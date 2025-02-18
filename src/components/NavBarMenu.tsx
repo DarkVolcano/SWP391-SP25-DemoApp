@@ -23,7 +23,7 @@ const NavbarMenu = () => {
     } else if (key === "price") {
       navigate("/Homepage/Price");
     } else if (key === "home") {
-      navigate("/Homepage/Main");
+      navigate("/");
     } else if (key === "staff") {
       navigate("/Staff/Appointment");
     } else if (key === "therapist") {
