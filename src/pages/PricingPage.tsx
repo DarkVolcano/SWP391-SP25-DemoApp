@@ -1,5 +1,5 @@
 import { Card, Col, Row, Typography, Button, Tag } from "antd";
-import styles from "./PricingTable.module.css";
+import "./PricingTable.module.css";
 
 const { Title, Paragraph } = Typography;
 
@@ -48,44 +48,132 @@ const pricingPlans: PricingPlan[] = [
 
 const PricingTable = () => {
   return (
-    <div className={styles.container}>
-      <Title level={2} className={styles.heading}>
+    <div
+      style={{
+        padding: "80px 10%",
+        backgroundColor: "#F1EBE4",
+        borderRadius: "12px",
+        boxShadow: "0 8px 16px rgba(0,0,0,0.1)",
+        textAlign: "center",
+      }}
+    >
+      <Title
+        level={2}
+        style={{
+          color: "#3A5A40",
+          fontSize: "32px",
+          fontWeight: "bold",
+          marginBottom: "20px",
+        }}
+      >
         Bảng Giá Dịch Vụ Chăm Sóc Da
       </Title>
-      <Paragraph className={styles.subheading}>
-        Chọn gói dịch vụ phù hợp với nhu cầu của bạn và tận hưởng làn da khỏe
-        mạnh!
+
+      <Paragraph
+        style={{
+          fontSize: "18px",
+          color: "#6B705C",
+          marginBottom: "40px",
+        }}
+      >
+        Chọn gói dịch vụ phù hợp với nhu cầu của bạn và tận hưởng làn da khỏe mạnh!
       </Paragraph>
-      <Row gutter={[16, 16]} justify="center">
+
+      <Row gutter={[32, 32]} justify="center">
         {pricingPlans.map((plan, index) => (
           <Col xs={24} sm={12} lg={8} key={index}>
             <Card
-              className={`${styles.card} ${
-                plan.isPopular ? styles.popular : ""
-              }`}
               hoverable
+              style={{
+                borderRadius: "12px",
+                textAlign: "center",
+                padding: "20px",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+                transition: "transform 0.3s ease-in-out",
+                backgroundColor: plan.isPopular ? "#FFF9E6" : "white",
+                border: plan.isPopular ? "2px solid #FFD700" : "1px solid #ddd",
+              }}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.transform = "scale(1.05)")
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.transform = "scale(1)")
+              }
             >
-              <div className={styles.header}>
-                <Title level={4}>{plan.title}</Title>
-                {plan.tag && <Tag color="blue">{plan.tag}</Tag>}
-                {plan.isPopular && (
-                  <Tag color="gold" className={styles.popularTag}>
-                    Phổ Biến
-                  </Tag>
-                )}
-              </div>
-              <Title level={3} className={styles.price}>
+              
+              <Title level={4} style={{ color: "#3A5A40", marginBottom: "10px" }}>
+                {plan.title}
+              </Title>
+
+             
+              {plan.tag && (
+                <Tag color="blue" style={{ fontSize: "14px", marginBottom: "5px" }}>
+                  {plan.tag}
+                </Tag>
+              )}
+              {plan.isPopular && (
+                <Tag color="gold" style={{ fontSize: "14px", fontWeight: "bold" }}>
+                  Phổ Biến
+                </Tag>
+              )}
+
+              
+              <Title
+                level={3}
+                style={{
+                  color: "#A7C957",
+                  fontWeight: "bold",
+                  margin: "20px 0",
+                }}
+              >
                 {plan.price}
               </Title>
-              <Paragraph>{plan.description}</Paragraph>
-              <ul className={styles.features}>
+
+              
+              <Paragraph style={{ fontSize: "16px", color: "#6B705C" }}>
+                {plan.description}
+              </Paragraph>
+
+              
+              <ul style={{ listStyle: "none", padding: 0 }}>
                 {plan.features.map((feature, idx) => (
-                  <li key={idx} className={styles.featureItem}>
-                    {feature}
+                  <li
+                    key={idx}
+                    style={{
+                      fontSize: "16px",
+                      color: "#444",
+                      marginBottom: "8px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    ✅ {feature}
                   </li>
                 ))}
               </ul>
-              <Button type="primary" block>
+
+             
+              <Button
+                type="primary"
+                block
+                style={{
+                  marginTop: "20px",
+                  backgroundColor: "#A7C957",
+                  border: "none",
+                  fontSize: "16px",
+                  padding: "12px 24px",
+                  borderRadius: "8px",
+                  boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+                  transition: "all 0.3s ease-in-out",
+                }}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.backgroundColor = "#8AA851")
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.backgroundColor = "#A7C957")
+                }
+              >
                 Đặt Dịch Vụ
               </Button>
             </Card>

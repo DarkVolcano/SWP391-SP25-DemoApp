@@ -1,106 +1,105 @@
-import { Card, Row, Col, Button, Typography } from "antd";
-import { Product } from "../models/product.model";
-import "../style/Product.css";
+import { Card, Col, Row, Typography, Button } from "antd";
+import styles from "./SkinTherapist.module.css"; // Import CSS module
 
 const { Title, Text } = Typography;
 
-const products: Product[] = [
+const experts = [
   {
     id: 1,
-    name: "Apple",
-    image: "/images/apple.jpg",
-    originalPrice: 30,
-    discountedPrice: 25,
+    name: "Nancy Reimer",
+    expertise: "Giáo dục & Kiến thức chăm sóc da",
+    experience:
+      "Hàng chục năm kinh nghiệm và kiến thức chuyên sâu về chăm sóc da.",
+    field: "Giáo dục",
+    degree: "Giám đốc Giáo dục",
+    image: "https://via.placeholder.com/150",
   },
   {
     id: 2,
-    name: "Banana",
-    image: "/images/banana.jpg",
-    originalPrice: 30,
-    discountedPrice: 25,
+    name: "Tiffany Medois",
+    expertise: "Tư vấn viên & Chuyên viên thẩm mỹ",
+    experience:
+      "Từng làm nhà báo, nhà sản xuất, nhà làm phim tài liệu và biên tập viên.",
+    field: "Tư vấn",
+    degree: "Chuyên viên Thẩm mỹ Chứng nhận",
+    image: "https://via.placeholder.com/150",
   },
   {
     id: 3,
-    name: "Chocolate Cookies",
-    image: "/images/cookies.jpg",
-    originalPrice: 30,
-    discountedPrice: 25,
+    name: "Katina Gilmore",
+    expertise: "Điều dưỡng & Thẩm mỹ",
+    experience:
+      "Kết hợp giữa điều dưỡng và thẩm mỹ để mang lại sự chuyên môn cá nhân hóa.",
+    field: "Chăm sóc sức khỏe",
+    degree: "Y tá Chứng nhận (R.N.)",
+    image: "https://via.placeholder.com/150",
   },
   {
     id: 4,
-    name: "Chocolate Spread",
-    image: "/images/spread.jpg",
-    originalPrice: 30,
-    discountedPrice: 25,
-  },
-  {
-    id: 5,
-    name: "Cooling Oil",
-    image: "/images/oil.jpg",
-    originalPrice: 30,
-    discountedPrice: 25,
-  },
-  {
-    id: 6,
-    name: "Easter-Bread",
-    image: "/images/bread.jpg",
-    originalPrice: 30,
-    discountedPrice: 25,
+    name: "Bill Levins",
+    expertise: "Giám đốc Tiếp thị",
+    experience:
+      "Mang đến kiến thức thông qua sự am hiểu sâu sắc trong ngành kinh doanh chăm sóc da.",
+    field: "Tiếp thị",
+    degree: "Phó Chủ tịch Tiếp thị",
+    image: "https://via.placeholder.com/150",
   },
 ];
 
-const ProductList = () => {
+const SkinTherapist = () => {
   return (
-    <div className="product-list-container">
-      <Row gutter={[16, 16]}>
-        {products.map((product) => (
-          <Col xs={24} sm={12} md={8} lg={6} key={product.id}>
+    <div className={styles.container}>
+      {/* Tiêu đề */}
+      <Title level={2} className={styles.heading}>
+        Chọn chuyên viên trị liệu da cho bạn
+      </Title>
+
+      {/* Danh sách chuyên viên */}
+      <Row gutter={[32, 32]} justify="center">
+        {experts.map((expert) => (
+          <Col xs={24} sm={12} md={8} lg={6} key={expert.id}>
             <Card
               hoverable
+              className={styles["expert-card"]}
               cover={
                 <img
-                  alt={product.name}
-                  src={product.image}
-                  className="product-image"
+                  alt={expert.name}
+                  src={expert.image}
+                  className={styles["expert-image"]}
                 />
               }
-              className="product-card"
             >
-              <Title level={5}>{product.name}</Title>
-              <div className="price-container">
-                <Text delete>${product.originalPrice}</Text>
-                <Text strong style={{ marginLeft: 8, color: "#1890ff" }}>
-                  ${product.discountedPrice}
-                </Text>
+              <Title level={4} style={{ marginBottom: "5px", color: "#3A5A40" }}>
+                {expert.name}
+              </Title>
+              <Text strong className={styles["expert-info"]}>
+                {expert.expertise}
+              </Text>
+              <br />
+              <Text className={styles["expert-info"]}>{expert.experience}</Text>
+              <br />
+              <Text type="secondary" className={styles["expert-info"]}>
+                Lĩnh vực: {expert.field}
+              </Text>
+              <br />
+              <Text type="secondary" className={styles["expert-info"]}>
+                Bằng cấp: {expert.degree}
+              </Text>
+              <div style={{ marginTop: "15px" }}>
+                <Button
+                  type="primary"
+                  shape="round"
+                  className={styles.button}
+                >
+                  Đặt lịch với {expert.name.split(" ")[0]}
+                </Button>
               </div>
-              <Button type="primary" block style={{ marginTop: 8 }}>
-                Add to Cart
-              </Button>
             </Card>
           </Col>
         ))}
-
-        {/* Promotional Banners */}
-        <Col xs={24} sm={12} md={8} lg={6}>
-          <Card className="promo-card">
-            <Title level={4} style={{ color: "#ff4d4f" }}>
-              Don't Miss It
-            </Title>
-            <Text>30% Sale</Text>
-            <Text>On Coffee Products</Text>
-          </Card>
-        </Col>
-        <Col xs={24} sm={12} md={8} lg={6}>
-          <Card className="promo-card">
-            <Title level={4} style={{ color: "#ffa940" }}>
-              10% Sale
-            </Title>
-            <Text>On Packed Fruits</Text>
-          </Card>
-        </Col>
       </Row>
     </div>
   );
 };
 
-export default ProductList;
+export default SkinTherapist;

@@ -7,49 +7,6 @@ import { InfoOutlined } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
 
-// const experts = [
-//   {
-//     id: 1,
-//     name: "Nancy Reimer",
-//     expertise: "Giáo dục & Kiến thức chăm sóc da",
-//     experience:
-//       "Hàng chục năm kinh nghiệm và kiến thức chuyên sâu về chăm sóc da.",
-//     field: "Giáo dục",
-//     degree: "Giám đốc Giáo dục",
-//     image: "https://via.placeholder.com/150",
-//   },
-//   {
-//     id: 2,
-//     name: "Tiffany Medois",
-//     expertise: "Tư vấn viên & Chuyên viên thẩm mỹ",
-//     experience:
-//       "Từng làm nhà báo, nhà sản xuất, nhà làm phim tài liệu và biên tập viên.",
-//     field: "Tư vấn",
-//     degree: "Chuyên viên Thẩm mỹ Chứng nhận",
-//     image: "https://via.placeholder.com/150",
-//   },
-//   {
-//     id: 3,
-//     name: "Katina Gilmore",
-//     expertise: "Điều dưỡng & Thẩm mỹ",
-//     experience:
-//       "Kết hợp giữa điều dưỡng và thẩm mỹ để mang lại sự chuyên môn cá nhân hóa.",
-//     field: "Chăm sóc sức khỏe",
-//     degree: "Y tá Chứng nhận (R.N.)",
-//     image: "https://via.placeholder.com/150",
-//   },
-//   {
-//     id: 4,
-//     name: "Bill Levins",
-//     expertise: "Giám đốc Tiếp thị",
-//     experience:
-//       "Mang đến kiến thức thông qua sự am hiểu sâu sắc trong ngành kinh doanh chăm sóc da.",
-//     field: "Tiếp thị",
-//     degree: "Phó Chủ tịch Tiếp thị",
-//     image: "https://via.placeholder.com/150",
-//   },
-// ];
-
 const SkinTherapistList = () => {
   const navigate = useNavigate();
   const {
@@ -71,32 +28,91 @@ const SkinTherapistList = () => {
   }, [therapistData, isLoadingTherapist, errorTherapist, setTherapists]);
 
   return (
-    <div style={{ padding: "20px", backgroundColor: "#FBFEFB" }}>
-      <Title level={2} style={{ textAlign: "center", marginBottom: "30px" }}>
+    <div
+      style={{
+        padding: "80px 10%",
+        backgroundColor: "#F1EBE4",
+        borderRadius: "12px",
+        boxShadow: "0 8px 16px rgba(0,0,0,0.1)",
+        textAlign: "center",
+      }}
+    >
+    
+      <Title
+        level={2}
+        style={{
+          textAlign: "center",
+          color: "#3A5A40",
+          fontSize: "32px",
+          fontWeight: "bold",
+          marginBottom: "40px",
+        }}
+      >
         Chọn chuyên viên trị liệu da cho bạn
       </Title>
-      <Row gutter={[16, 16]}>
+
+     
+      <Row gutter={[32, 32]} justify="center">
         {therapistData?.map((therapist) => (
           <Col xs={24} sm={12} md={8} lg={6} key={therapist.skintherapistId}>
             <Card
               hoverable
-              style={{ borderRadius: "10px", textAlign: "center" }}
+              style={{
+                borderRadius: "12px",
+                textAlign: "center",
+                padding: "20px",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+                transition: "transform 0.3s ease-in-out",
+              }}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.transform = "scale(1.05)")
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.transform = "scale(1)")
+              }
               cover={
-                <img
-                  alt={therapist.name}
-                  src={therapist.image}
+                <div
                   style={{
-                    borderTopLeftRadius: "10px",
-                    borderTopRightRadius: "10px",
-                    objectFit: "cover",
+                    borderTopLeftRadius: "12px",
+                    borderTopRightRadius: "12px",
+                    overflow: "hidden",
                   }}
-                />
+                >
+                  <img
+                    alt={therapist.name}
+                    src={therapist.image}
+                    style={{
+                      width: "100%",
+                      objectFit: "cover",
+                      borderTopLeftRadius: "12px",
+                      borderTopRightRadius: "12px",
+                      transition: "opacity 0.3s ease-in-out",
+                    }}
+                    onMouseOver={(e) =>
+                      (e.currentTarget.style.opacity = "0.8")
+                    }
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.opacity = "1")
+                    }
+                  />
+                </div>
               }
               actions={[
                 <Button
                   type="text"
                   icon={<InfoOutlined />}
                   key="wishlist"
+                  style={{
+                    color: "#3A5A40",
+                    fontWeight: "bold",
+                    transition: "color 0.3s ease-in-out",
+                  }}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.color = "#6B705C")
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.color = "#3A5A40")
+                  }
                   onClick={() => handleNavigate(therapist.skintherapistId)}
                 >
                   Thông tin
@@ -104,25 +120,48 @@ const SkinTherapistList = () => {
                 <Button
                   type="primary"
                   key="book"
+                  style={{
+                    backgroundColor: "#A7C957",
+                    border: "none",
+                    fontSize: "14px", 
+                    padding: "6px 12px",
+                    borderRadius: "20px", 
+                    whiteSpace: "nowrap", 
+                    maxWidth: "100px", 
+                    overflow: "hidden", 
+                    textOverflow: "ellipsis", 
+                    boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+                    transition: "all 0.3s ease-in-out",
+                  }}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.backgroundColor = "#8AA851")
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.backgroundColor = "#A7C957")
+                  }
                   onClick={() => handleNavigate(therapist.skintherapistId)}
                 >
-                  Đặt lịch với {therapist.name.split(" ")[0]}
+                  Đặt lịch
                 </Button>,
               ]}
             >
-              <Title level={4} style={{ marginBottom: "5px" }}>
+              <Title level={4} style={{ marginBottom: "5px", color: "#3A5A40" }}>
                 {therapist.name}
               </Title>
-              <Text strong>{therapist.expertise}</Text>
+              <Text strong style={{ fontSize: "16px", color: "#6B705C" }}>
+                {therapist.expertise}
+              </Text>
               <br />
-              <Text type="secondary">Kinh nghiệm: {therapist.experience}</Text>
+              <Text style={{ fontSize: "16px", color: "#6B705C" }}>
+                Kinh nghiệm: {therapist.experience}
+              </Text>
               <br />
-              <Text type="secondary">Bằng cấp: {therapist.degree}</Text>
-              {/* <div style={{ marginTop: "15px" }}>
-                <Button type="primary" shape="round">
-                  Đặt lịch với {therapist.name.split(" ")[0]}
-                </Button>
-              </div> */}
+              <Text
+                type="secondary"
+                style={{ fontSize: "16px", color: "#6B705C" }}
+              >
+                Bằng cấp: {therapist.degree}
+              </Text>
             </Card>
           </Col>
         ))}
